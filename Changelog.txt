@@ -1,5 +1,8 @@
 Changelog
 
+1.1.0.2
+	Updated for 1.4.1+
+
 5/10/2015
 EvaPatrol.cs:		Added "Hide" function
 EvaContainer.cs:	Added "TogglePatrolLines" function

@@ -58,8 +58,12 @@ namespace MSD.EvaFollower
 
             _cursor.useWorldSpace = false;
             _cursor.material = new Material(Shader.Find("Particles/Additive"));
-            _cursor.SetWidth(0.05f, 0.05f);
-            _cursor.SetColors(Color.green, Color.green);
+            //_cursor.SetWidth(0.05f, 0.05f);
+            _cursor.startWidth = 0.05f;
+            _cursor.endWidth = 0.05f;
+
+            //_cursor.SetColors(Color.green, Color.green);
+            _cursor.startColor = _cursor.endColor = Color.green;
 
 			Renderer _renderer = null;
 			_cursor.GetComponentCached<Renderer> (ref _renderer);
@@ -70,7 +74,7 @@ namespace MSD.EvaFollower
 				_renderer.receiveShadows = false;
 			}
             int segments = 32;
-            _cursor.SetVertexCount(segments);
+            _cursor.positionCount = segments;
 
             CreateCircle(_cursor, segments, 0.125);
         }
@@ -100,7 +104,8 @@ namespace MSD.EvaFollower
                 _animatedCursorValue += (float)(Math.PI / 8.0f);
 
                 Color c = new Color(_animatedCursorValue / 8.0f, 1.0f - _animatedCursorValue / 8.0f, 0);
-                _cursor.SetColors(c, c);
+                //_cursor.SetColors(c, c);
+                _cursor.startColor = _cursor.endColor = c;
 
                 //show the animation and close the cursor 
                 if (_animatedCursorValue > 20)
@@ -177,8 +182,11 @@ namespace MSD.EvaFollower
 
             lineRenderer.useWorldSpace = false;
             lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-            lineRenderer.SetWidth(0.05f, 0.05f);
-            lineRenderer.SetColors(Color.green, Color.red);
+            lineRenderer.startWidth = 0.05f;
+            lineRenderer.endWidth = 0.05f;
+            //lineRenderer.SetColors(Color.green, Color.red);
+            lineRenderer.startColor = Color.green;
+            lineRenderer.endColor = Color.red;
 
 			Renderer _renderer = null;
 			lineRenderer.GetComponentCached<Renderer> (ref _renderer);
@@ -190,7 +198,7 @@ namespace MSD.EvaFollower
 
             int segments = 32;
 
-            lineRenderer.SetVertexCount(segments);
+            lineRenderer.positionCount = (segments);
 
             CreateCircle(lineRenderer, segments, 0.25);
 
@@ -236,7 +244,8 @@ namespace MSD.EvaFollower
 			_cursor.GetComponentCached<Renderer> (ref _renderer);
             _renderer.enabled = false;
 
-            _cursor.SetColors(Color.green, Color.green);
+            //_cursor.SetColors(Color.green, Color.green);
+            _cursor.startColor = _cursor.endColor = Color.green;
             _animatedCursor = false;
             _animatedCursorValue = 0;
         }
@@ -605,7 +614,7 @@ namespace MSD.EvaFollower
 
         private void setLine(Vector3d position, Vector3d target)
         {
-            debugLine.SetVertexCount(2);
+            debugLine.positionCount= (2);
             debugLine.SetPosition(0, position);
             debugLine.SetPosition(1, target);
         }
@@ -616,10 +625,13 @@ namespace MSD.EvaFollower
 
             debugLine.useWorldSpace = false;
             debugLine.material = new Material(Shader.Find("Particles/Additive"));
-            debugLine.SetWidth(0.05f, 0.05f);
-            debugLine.SetColors(Color.green, Color.red);
+            debugLine.startWidth = 0.05f;
+            debugLine.endWidth = 0.05f;
+            //debugLine.SetColors(Color.green, Color.red);
+            debugLine.startColor = Color.green;
+            debugLine.endColor = Color.red;
 
-			Renderer _renderer = null;
+            Renderer _renderer = null;
 			debugLine.GetComponentCached<Renderer> (ref _renderer);
 
 			if (_renderer) {
@@ -628,7 +640,7 @@ namespace MSD.EvaFollower
 				_renderer.enabled = true;
 			}
 
-            debugLine.SetVertexCount(0);
+            debugLine.positionCount = 0;
         }
 
 

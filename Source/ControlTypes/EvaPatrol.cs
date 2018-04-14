@@ -99,11 +99,11 @@ namespace MSD.EvaFollower
             actions.Clear();
 
             if (EvaSettings.displayDebugLines)
-                lineRenderer.SetVertexCount(0);
+                lineRenderer.positionCount = 0;
 
         }
         public void Hide() {
-            lineRenderer.SetVertexCount(0);
+            lineRenderer.positionCount = 0;
         }
 
 
@@ -172,7 +172,7 @@ namespace MSD.EvaFollower
 
         public void GenerateLine()
         {
-            lineRenderer.SetVertexCount(actions.Count+1);
+            lineRenderer.positionCount = actions.Count+1;
 
             for (int i = 0; i < actions.Count; i++)
             {
@@ -186,7 +186,7 @@ namespace MSD.EvaFollower
 
         private void setLine(Vector3d position)
         {
-            lineRenderer.SetVertexCount(actions.Count);
+            lineRenderer.positionCount = actions.Count;
             lineRenderer.SetPosition(actions.Count - 1, Util.GetWorldPos3DLoad(position));
         }
 
@@ -198,10 +198,14 @@ namespace MSD.EvaFollower
 
                 lineRenderer.useWorldSpace = false;
                 lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-                lineRenderer.SetWidth(0.05f, 0.05f);
-                lineRenderer.SetColors(Color.green, Color.red);
+                lineRenderer.startWidth = 0.05f;
+                lineRenderer.endWidth = 0.05f;
+                //lineRenderer.SetColors(Color.green, Color.red);
+                lineRenderer.startColor = Color.green;
+                lineRenderer.endColor = Color.red;
 
-				Renderer _renderer = null;
+
+                Renderer _renderer = null;
 				lineRenderer.GetComponentCached<Renderer> (ref _renderer);
 
 				if (_renderer != null) {
@@ -209,7 +213,7 @@ namespace MSD.EvaFollower
 					_renderer.receiveShadows = false;
 					_renderer.enabled = true;
 				}
-                lineRenderer.SetVertexCount(0);
+                lineRenderer.positionCount = 0;
             }
         }
     }
