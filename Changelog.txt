@@ -1,5 +1,14 @@
 Changelog
 
+1.1.0.4
+	Version bump for 1.5 rebuild
+	Replaced xml config with ConfigNode storage
+	Moved following settings from config file into Settings page
+         displayDebugLinesSetting 
+         displayLoadingKerbals 
+         displayToggleHelmet
+         targetVesselBySelection
+
 1.1.0.2
 	Updated for 1.4.1+
 

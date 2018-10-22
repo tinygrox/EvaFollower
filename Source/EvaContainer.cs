@@ -66,7 +66,7 @@ namespace MSD.EvaFollower
 
         public bool CanTakeHelmetOff
         {
-            get { return (FlightGlobals.ActiveVessel.mainBody.bodyName == "Kerbin") && EvaSettings.displayToggleHelmet; }
+            get { return (FlightGlobals.ActiveVessel.mainBody.bodyName == "Kerbin") && HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().displayToggleHelmet; }
         }
 
         public KerbalEVA EVA

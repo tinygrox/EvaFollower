@@ -1,6 +1,6 @@
 {
   "NAME": "EVAFollowerFollowed",
-  "URL": "https://raw.githubusercontent.com/linuxgurugamer/EvaFollower/master/EvaFollower.version",
+  "URL": "http://ksp.spacetux.net/avc/EvaFollower",
   "DOWNLOAD": "https://github.com/linuxgurugamer/EvaFollower/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
@@ -10,21 +10,21 @@
     "MAJOR": 1,
     "MINOR": 1,
     "PATCH": 0,
-    "BUILD": 3
+    "BUILD": 4
   },
   "KSP_VERSION": {
     "MAJOR": 1,
-    "MINOR": 4,
+    "MINOR": 5,
     "PATCH": 1
   },
   "KSP_VERSION_MIN": {
     "MAJOR": 1,
-    "MINOR": 4,
+    "MINOR": 5,
     "PATCH": 1
   },
   "KSP_VERSION_MAX": {
     "MAJOR": 1,
-    "MINOR": 4,
+    "MINOR": 5,
     "PATCH": 99
   }
 }

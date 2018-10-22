@@ -9,11 +9,16 @@ namespace MSD.EvaFollower
 {
     class EvaSettings
     {
-        internal static bool targetVesselBySelection = false;
+
+        public static readonly String ROOT_PATH = KSPUtil.ApplicationRootPath;
+        private static readonly String CONFIG_BASE_FOLDER = ROOT_PATH + "GameData/";
+        private static String BASE_FOLDER = CONFIG_BASE_FOLDER + "EvaFollower/";
+        private static String NODENAME = "EvaFollower";
+        private static String CFG_FILE = BASE_FOLDER + "PluginData/Settings.cfg";
+
+
         internal static bool displayDebugLines = false;
-        internal static bool displayDebugLinesSetting = false;
-        internal static bool displayToggleHelmet = true;
-        internal static bool displayLoadingKerbals = true;
+ 
 
         internal static int selectMouseButton = 0;
         internal static int dispatchMouseButton = 2;
@@ -26,9 +31,12 @@ namespace MSD.EvaFollower
 
         private static bool isLoaded = false;
 
+        static string  ConfigFileName {  get { return BASE_FOLDER + "/PluginData/Config.cfg";  } }
+
         public static void LoadConfiguration()
         {
-            if (FileExcist("Config.cfg"))
+#if false
+            if (File.Exists("Config.cfg"))
             {
                 KSP.IO.TextReader tr = KSP.IO.TextReader.CreateForType<EvaSettings>("Config.cfg");
                 string[] lines = tr.ReadToEnd().Split('\n');
@@ -64,10 +72,37 @@ namespace MSD.EvaFollower
                 }
                 displayDebugLines = displayDebugLinesSetting;
             }
+#else
+            
+            if (File.Exists(ConfigFileName))
+            {
+                ConfigNode node = ConfigNode.Load(ConfigFileName);
+                if (node != null)
+                {
+                    ConfigNode data = node.GetNode(NODENAME);
+                    if (data != null)
+                    {
+
+                        node.TryGetValue("selectMouseButton", ref selectMouseButton);
+                        node.TryGetValue("dispatchMouseButton", ref dispatchMouseButton);
+                        node.TryGetValue("selectKeyButton", ref selectKeyButton);
+                        node.TryGetValue("dispatchKeyButton", ref dispatchKeyButton);
+
+                    }
+
+                }
+                    
+            }
+#endif
         }
 
         public static void SaveConfiguration()
         {
+            EvaDebug.DebugWarning("SaveConfiguration()");
+
+            ConfigNode node = new ConfigNode();
+            ConfigNode data = new ConfigNode();
+#if false
             KSP.IO.TextWriter tr = KSP.IO.TextWriter.CreateForType<EvaSettings>("Config.cfg");
             tr.Write("ShowDebugLines = false");
             tr.Write("# 0 = left, 1 = right, 2 = middle mouse button.");
@@ -81,7 +116,18 @@ namespace MSD.EvaFollower
             tr.Write("ShowLoadingKerbals = false");
             tr.Write("EnableHelmetToggle = true");
             tr.Close();
+#else
 
+            data.AddValue("selectMouseButton", selectMouseButton);
+            data.AddValue("dispatchMouseButton", dispatchMouseButton);
+            data.AddValue("selectMouseButton", selectMouseButton);
+            data.AddValue("dispatchKeyButton", dispatchKeyButton);
+
+            node.AddNode(NODENAME, data);
+            
+            Debug.Log("Saving to: " + ConfigFileName);
+            node.Save(ConfigFileName);
+#endif
         }
 
         public static bool FileExcist(string name)
@@ -92,7 +138,7 @@ namespace MSD.EvaFollower
         public static void Load()
         {
             EvaDebug.DebugWarning("OnLoad()");
-			if (displayLoadingKerbals) {
+			if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().displayLoadingKerbals) {
 				ScreenMessages.PostScreenMessage ("Loading Kerbals...", 3, ScreenMessageStyle.LOWER_CENTER);
 			}
 
@@ -113,7 +159,7 @@ namespace MSD.EvaFollower
             {
                 EvaDebug.DebugWarning("OnSave()");
 
-				if (displayLoadingKerbals) {
+				if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().displayLoadingKerbals) {
 					ScreenMessages.PostScreenMessage ("Saving Kerbals...", 3, ScreenMessageStyle.LOWER_CENTER);
 				}
 
