@@ -31,7 +31,7 @@
 	//
 	// Update the following with the complete path to the .version file
 	//
-	string versionfile =  @"D:\Users\jbb\github\EvaFollower\EVAFollower.version";
+	string versionfile =  @"D:\Users\jbb\github\EvaFollower\EvaFollower.version";
 
 	if (!File.Exists(versionfile))
 	{
