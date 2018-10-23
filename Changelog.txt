@@ -4,6 +4,7 @@ Changelog
 	Fixed new kerbal suits
 	Removed extraneous settings 
 	Fixed homeworld check
+	Fixed female Kerbals
 
 1.1.0.4
 	Version bump for 1.5 rebuild
