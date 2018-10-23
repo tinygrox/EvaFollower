@@ -404,7 +404,7 @@ namespace MSD.EvaFollower
                     }
 
                     #region targetVesselBySelection
-                    if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().targetVesselBySelection)
+                    if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFollowerMiscSettings>().targetVesselBySelection)
                     {
                         if (_selection.width != 0 && _selection.height != 0)
                         {

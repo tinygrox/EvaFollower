@@ -138,7 +138,7 @@ namespace MSD.EvaFollower
         public static void Load()
         {
             EvaDebug.DebugWarning("OnLoad()");
-			if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().displayLoadingKerbals) {
+			if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFollowerMiscSettings>().displayLoadingKerbals) {
 				ScreenMessages.PostScreenMessage ("Loading Kerbals...", 3, ScreenMessageStyle.LOWER_CENTER);
 			}
 
@@ -159,7 +159,7 @@ namespace MSD.EvaFollower
             {
                 EvaDebug.DebugWarning("OnSave()");
 
-				if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().displayLoadingKerbals) {
+				if (HighLogic.CurrentGame.Parameters.CustomParams<EvaFollowerMiscSettings>().displayLoadingKerbals) {
 					ScreenMessages.PostScreenMessage ("Saving Kerbals...", 3, ScreenMessageStyle.LOWER_CENTER);
 				}
 

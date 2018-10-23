@@ -46,13 +46,19 @@ namespace MSD.EvaFollower
 
         public string selectedFuel;
 
-        public SelectEVAFuelType()
-        {
-        }
+
         GUIStyle smallButtonStyle, smallScrollBar;
+
+        public static readonly String ROOT_PATH = KSPUtil.ApplicationRootPath;
+        public static string MOD = null;
+        static string EVA_FUELRESOURCES = "FUELRESOURCES";
+        static string BANNED_RESOURCES = "BANNED";
+        public static String EVAFUEL_NODE = MOD;
+
 
         void Start()
         {
+            Log.Info("SelectEVAFuelType.Start");
             Instance = this;
             smallButtonStyle = new GUIStyle(HighLogic.Skin.button);
             smallButtonStyle.stretchHeight = false;
@@ -60,6 +66,8 @@ namespace MSD.EvaFollower
 
             smallScrollBar = new GUIStyle(HighLogic.Skin.verticalScrollbar);
             smallScrollBar.fixedWidth = 8f;
+
+            MOD = Assembly.GetAssembly(typeof(EvaFuelManager)).GetName().Name;
         }
 
         void OnGUI()
@@ -101,6 +109,10 @@ namespace MSD.EvaFollower
         }
         public void Draw()
         {
+            if (MOD == null || MOD == "")
+                return;
+
+            Log.Info("SelectEVAFuelType.Draw");
             if (allResources == null)
                 getAllResources();
 
@@ -109,22 +121,21 @@ namespace MSD.EvaFollower
             settingsRect = GUILayout.Window("EVAFuelSettings".GetHashCode(),
                                             settingsRect,
                                             SettingsWindowFcn,
-                                            "EVA Fuel Settings",
+                                            "EVA Follower Settings",
                                             GUILayout.ExpandWidth(true),
                                             GUILayout.ExpandHeight(true));
         }
-        public static readonly String ROOT_PATH = KSPUtil.ApplicationRootPath;
-        public readonly static string MOD = Assembly.GetAssembly(typeof(EvaFuelManager)).GetName().Name;
-        static string EVA_FUELRESOURCES = "FUELRESOURCES";
-        static string BANNED_RESOURCES = "BANNED";
-        public static String EVAFUEL_NODE = MOD;
+
 
         public List<String> getFuelResources(bool banned = false)
         {
+            List<string> fr = new List<String>();
+            if (MOD == null || MOD == "")
+                return fr;
             ConfigNode configFile = new ConfigNode();
             ConfigNode configFileNode = new ConfigNode();
             ConfigNode configDataNode;
-            List<string> fr = new List<String>();
+            
             string fname = ROOT_PATH + "GameData/" + MOD + "/PluginData/fuelResources.cfg";
 
             configFile = ConfigNode.Load(fname);
@@ -293,168 +304,13 @@ namespace MSD.EvaFollower
     // search for "Mod integration into Stock Settings
     // HighLogic.CurrentGame.Parameters.CustomParams<EVAFuelSettings>()
 
-
-    public class EvaFuelDifficultySettings : GameParameters.CustomParameterNode
+    public class EvaFollowerMiscSettings : GameParameters.CustomParameterNode
     {
         public override string Title { get { return ""; } }
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "EVA Fuel"; } }
-        public override string DisplaySection { get { return "EVA Fuel"; } }
+        public override string Section { get { return "EVA Follower"; } }
+        public override string DisplaySection { get { return "EVA Follower"; } }
         public override int SectionOrder { get { return 1; } }
-        public override bool HasPresets { get { return false; } }
-
-        [GameParameters.CustomParameterUI("Enable mod for this save?")]
-        public bool ModEnabled = true;
-
-        //[GameParameters.CustomStringParameterUI("Only works if KIS is installed")]
-        //public string KISInfo = "";
-        [GameParameters.CustomParameterUI("Enable KIS integration?")]
-        public bool KISIntegrationEnabled = true;
-
-        [GameParameters.CustomParameterUI("Show fuel transfer message?")]
-        public bool ShowInfoMessage = false;
-
-        [GameParameters.CustomParameterUI("Show low fuel warning?")]
-        public bool ShowLowFuelWarning = true;
-
-        [GameParameters.CustomParameterUI("Disable warning when landed/splashed?")]
-        public bool DisableLowFuelWarningLandSplash = true;
-
-#if false
-        [GameParameters.CustomParameterUI("Fill from Pod", toolTip = "(if false, unable to refuel for entire mission")]
-        public bool fillFromPod = true;
-#endif
-        public override void SetDifficultyPreset(GameParameters.Preset preset)
-        {
-            ModEnabled = true;
-            KISIntegrationEnabled = true;
-            ShowInfoMessage = false;
-            DisableLowFuelWarningLandSplash = true;
-            //      fillFromPod = true;
-        }
-        public override bool Interactible(MemberInfo member, GameParameters parameters)
-        {
-
-            return !EVAFuelGlobals.changeEVAPropellent;
-        }
-    }
-
-    public class EVAFuelSettings : GameParameters.CustomParameterNode
-    {
-        public override string Title { get { return ""; } }
-        public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "EVA Fuel"; } }
-        public override string DisplaySection { get { return "EVA Fuel"; } }
-        public override int SectionOrder { get { return 2; } }
-        public override bool HasPresets { get { return false; } }
-
-
-
-        [GameParameters.CustomFloatParameterUI("EVA Fuel Tank Max", minValue = 0.5f, maxValue = 15.0f, asPercentage = false, displayFormat = "0.0",
-           toolTip = "Maximum amount of EVA fuel")]
-        public double EvaTankFuelMax = 5.0f;
-
-        [GameParameters.CustomFloatParameterUI("EVA Fuel Conversion Factor", minValue = 0.1f, maxValue = 10.0f, asPercentage = false, displayFormat = "0.0",
-          toolTip = "Each 1 unit of ship fuel will become this many units of Eva Fuel")]
-        public double FuelConversionFactor = 1.0f;
-
-        // [GameParameters.CustomStringParameterUI("EVA Propellent Type", autoPersistance = true, lines = 1, title = "EVA Propellent Type")]       
-        public string EvaPropellantName = "EVA Propellant";
-
-        [GameParameters.CustomParameterUI("Change EVA Propellent Type")]
-        public bool changeEVAPropellent = false;
-
-        [GameParameters.CustomStringParameterUI("EVA Propellent Type", autoPersistance = true, lines = 1, title = "EVA Propellent Type")]
-        public string ShipPropellantName = "MonoPropellant";
-
-
-        [GameParameters.CustomParameterUI("Add resource to command pods", toolTip = "Command pod is defined as parts with crew & MonoProp)")]
-        public bool addToCmdPods = true;
-
-        [GameParameters.CustomFloatParameterUI("Amount of resource to add:", minValue = 0.1f, maxValue = 10.0f, asPercentage = false, displayFormat = "0.0")]
-        public double resourcesAmtToAdd = 5.0f;
-
-        [GameParameters.CustomParameterUI("Multiply resource added by max crew")]
-        public bool resourcePerCrew = true;
-
-
-        [GameParameters.CustomStringParameterUI("Ship Electricity Name", autoPersistance = true, lines = 2, title = "Ship Electricity Name")]
-        public string ShipElectricityName = "ElectricCharge";
-
-        [GameParameters.CustomIntParameterUI("Screen Message Life", maxValue = 10)]
-        public int ScreenMessageLife = 5;
-
-        // Currently not used
-        //[GameParameters.CustomIntParameterUI("Screen Message Warning Life", maxValue = 10)]
-        //public int ScreenMessageWarningLife = 10;
-
-
-        public override void SetDifficultyPreset(GameParameters.Preset preset)
-        {
-            EvaTankFuelMax = 5.0f;
-            FuelConversionFactor = 1.0f;
-            ShipPropellantName = "MonoPropellant";
-            ShipElectricityName = "ElectricCharge";
-            ScreenMessageLife = 5;
-            //ScreenMessageWarningLife = 10;
-
-
-        }
-
-        public override bool Enabled(MemberInfo member, GameParameters parameters)
-        {
-            EVAFuelGlobals.changeEVAPropellent = changeEVAPropellent;
-            return true; //otherwise return true
-        }
-        private const string controlLock = "EVAFuelSettings";
-
-
-
-        public override bool Interactible(MemberInfo member, GameParameters parameters)
-        {
-            if (changeEVAPropellent)
-            {
-                SelectEVAFuelType.Instance.lastTimeTic = Time.realtimeSinceStartup;
-                switch (SelectEVAFuelType.Instance.answer)
-                {
-                    case SelectEVAFuelType.Answer.inActive:
-                        SelectEVAFuelType.Instance.answer = SelectEVAFuelType.Answer.notAnswered;
-                        InputLockManager.SetControlLock(ControlTypes.KEYBOARDINPUT, controlLock);
-                        return false;
-
-                    case SelectEVAFuelType.Answer.answered:
-                        changeEVAPropellent = false;
-                        SelectEVAFuelType.Instance.answer = SelectEVAFuelType.Answer.inActive;
-                        ShipPropellantName = SelectEVAFuelType.Instance.selectedFuel;
-                        InputLockManager.RemoveControlLock(controlLock);
-                        break;
-
-                    case SelectEVAFuelType.Answer.cancel:
-                        SelectEVAFuelType.Instance.answer = SelectEVAFuelType.Answer.inActive;
-                        changeEVAPropellent = false;
-                        InputLockManager.RemoveControlLock(controlLock);
-
-                        break;
-                }
-                return false;
-            }
-            return true; //otherwise return true
-        }
-
-        public override IList ValidValues(MemberInfo member)
-        {
-            return null;
-        }
-
-    }
-
-    public class EvaFuelMiscSettings : GameParameters.CustomParameterNode
-    {
-        public override string Title { get { return ""; } }
-        public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "EVA Fuel"; } }
-        public override string DisplaySection { get { return "EVA Fuel"; } }
-        public override int SectionOrder { get { return 3; } }
         public override bool HasPresets { get { return false; } }
 
 

@@ -38,7 +38,7 @@ namespace MSD.EvaFollower
                 return;
 
             // Replace this with a check to see if GUI is hidden
-            if (Input.GetKeyDown(KeyCode.F2) && HighLogic.CurrentGame.Parameters.CustomParams<EvaFuelMiscSettings>().displayDebugLinesSetting) {
+            if (Input.GetKeyDown(KeyCode.F2) && HighLogic.CurrentGame.Parameters.CustomParams<EvaFollowerMiscSettings>().displayDebugLinesSetting) {
                 EvaSettings.displayDebugLines = !EvaSettings.displayDebugLines;
                 foreach (EvaContainer container in EvaController.instance.collection) {
                     container.togglePatrolLines();
