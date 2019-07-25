@@ -97,7 +97,7 @@ set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Com
       <HintPath>R:\KSP_1.7.2_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="EvaFuel">
-      <HintPath>R:\KSP_1.7.2_dev\GameData\EVAFuel\Plugins\EvaFuel.dll</HintPath>
+      <HintPath>R:\KSP_1.7.2_dev\GameData\EvaFuel\Plugins\EvaFuel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
