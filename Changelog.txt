@@ -2,6 +2,8 @@ Changelog
 
 1.1.0.7
 	Version bump for 1.7.2
+	Updated AssemblyVersion.tt
+	Added InstallChecker.cs
 
 1.1.0.5
 	Fixed new kerbal suits
