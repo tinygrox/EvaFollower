@@ -21,7 +21,7 @@ namespace MSD.EvaFollower
     internal class InstallChecker : MonoBehaviour
     {
         private const string MODNAME = "EVA Follower";
-        private const string FOLDERNAME = "EVAFollower";
+        private const string FOLDERNAME = "EvaFollower";
         private const string EXPECTEDPATH = FOLDERNAME + "/Plugins";
 
         protected void Start()
