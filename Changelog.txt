@@ -1,5 +1,8 @@
 Changelog
 
+1.1.1.1
+	Updated MiniAVC.dll to 1.4.0.2 to fix a nasty CTD
+
 1.1.1
 	Updated for KSP 1.8
 
