@@ -1,5 +1,8 @@
 Changelog
 
+1.1.1.4
+	Moved initializations into Start() method
+
 1.1.1.3
 	Version bump to fix bad file on Spacedock
 1.1.1.2

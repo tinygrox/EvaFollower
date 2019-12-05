@@ -35,8 +35,7 @@ namespace MSD.EvaFollower
         public Answer answer = Answer.inActive;
         public float lastTimeTic = 0;
 
-        private Rect settingsRect = new Rect(200, 200, 275, 400);
-
+        private Rect settingsRect;
         int curResIndex = -1;
         Vector2 scrollPosition1 = Vector2.zero;
         static List<PartResourceDefinition> allResources = null;
@@ -49,7 +48,7 @@ namespace MSD.EvaFollower
 
         GUIStyle smallButtonStyle, smallScrollBar;
 
-        public static readonly String ROOT_PATH = KSPUtil.ApplicationRootPath;
+        public static String ROOT_PATH;
         public static string MOD = null;
         static string EVA_FUELRESOURCES = "FUELRESOURCES";
         static string BANNED_RESOURCES = "BANNED";
@@ -68,6 +67,9 @@ namespace MSD.EvaFollower
             smallScrollBar.fixedWidth = 8f;
 
             MOD = Assembly.GetAssembly(typeof(EvaFuelManager)).GetName().Name;
+            settingsRect = new Rect(200, 200, 275, 400);
+            ROOT_PATH = KSPUtil.ApplicationRootPath;
+
         }
 
         void OnGUI()
