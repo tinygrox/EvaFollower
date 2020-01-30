@@ -197,7 +197,7 @@ namespace MSD.EvaFollower
                 lineRenderer = new GameObject().AddComponent<LineRenderer>();
 
                 lineRenderer.useWorldSpace = false;
-                lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+                lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Additive"));
                 lineRenderer.startWidth = 0.05f;
                 lineRenderer.endWidth = 0.05f;
                 //lineRenderer.SetColors(Color.green, Color.red);
