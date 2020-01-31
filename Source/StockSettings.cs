@@ -17,7 +17,30 @@ namespace MSD.EvaFollower
         void Start()
         {
             changeEVAPropellent = false;
+            if (!modsFound)
+            {
+                buildModList();
+                modsFound = true;
+            }
         }
+
+        bool modsFound = false;
+        static List<String> installedMods = new List<String>();
+        void buildModList()
+        {
+            //https://github.com/Xaiier/Kreeper/blob/master/Kreeper/Kreeper.cs#L92-L94 <- Thanks Xaiier!
+            foreach (AssemblyLoader.LoadedAssembly a in AssemblyLoader.loadedAssemblies)
+            {
+                string name = a.name;
+                //Log.Info(string.Format("Loading assembly: {0}", name));
+                installedMods.Add(name);
+            }
+        }
+        static public bool hasMod(string modIdent)
+        {
+            return installedMods.Contains(modIdent);
+        }
+
     }
 
     [KSPAddon(KSPAddon.Startup.EveryScene, false)]
@@ -66,12 +89,20 @@ namespace MSD.EvaFollower
             smallScrollBar = new GUIStyle(HighLogic.Skin.verticalScrollbar);
             smallScrollBar.fixedWidth = 8f;
 
-            MOD = Assembly.GetAssembly(typeof(EvaFuelManager)).GetName().Name;
+            // The follopwing
+            if (EVAFuelGlobals.hasMod("EvaFuel"))
+                MOD = GetEvaFuel();
+            else
+                MOD = null;
             settingsRect = new Rect(200, 200, 275, 400);
             ROOT_PATH = KSPUtil.ApplicationRootPath;
 
         }
 
+        string GetEvaFuel()
+        {
+            return  Assembly.GetAssembly(typeof(EvaFuelManager)).GetName().Name;
+        }
         void OnGUI()
         {
             if (answer == Answer.inActive)

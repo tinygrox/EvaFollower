@@ -1,5 +1,9 @@
 Changelog
 
+1.1.1.5
+	Fixed shaders for KSP 1.8
+	Added additional check for EvaFuel 
+
 1.1.1.4
 	Moved initializations into Start() method
 
