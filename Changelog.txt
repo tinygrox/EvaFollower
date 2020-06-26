@@ -1,5 +1,9 @@
 Changelog
 
+1.1.1.7
+	Thanks to github user @lampeh for this:
+		Fixed duplicated selectMouseButton, added selectKeyButton
+
 1.1.1.6
 	Added new EVA models
 		maleEVA
