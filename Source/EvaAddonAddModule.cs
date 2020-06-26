@@ -45,6 +45,49 @@ namespace MSD.EvaFollower
             }
             catch { }
 
+            EVA = new ConfigNode("MODULE");
+            EVA.AddValue("name", "EvaModule");
+            try
+            {
+                PartLoader.getPartInfoByName("kerbalEVA_RD_Exp").partPrefab.AddModule(EVA);
+            }
+            catch { }
+            EVA = new ConfigNode("MODULE");
+            EVA.AddValue("name", "EvaModule");
+            try
+            {
+                PartLoader.getPartInfoByName("kerbalEVA_female_Exp").partPrefab.AddModule(EVA);
+            }
+            catch { }
+            EVA = new ConfigNode("MODULE");
+            EVA.AddValue("name", "EvaModule");
+            try
+            {
+                PartLoader.getPartInfoByName("kerbalEVA_RD_Future").partPrefab.AddModule(EVA);
+            }
+            catch { }
+            EVA = new ConfigNode("MODULE");
+            EVA.AddValue("name", "EvaModule");
+            try
+            {
+                PartLoader.getPartInfoByName("kerbalEVA_female_Future").partPrefab.AddModule(EVA);
+            }
+            catch { }
+            EVA = new ConfigNode("MODULE");
+            EVA.AddValue("name", "EvaModule");
+            try
+            {
+                PartLoader.getPartInfoByName("maleEVA").partPrefab.AddModule(EVA);
+            }
+            catch { }
+            EVA = new ConfigNode("MODULE");
+            EVA.AddValue("name", "EvaModule");
+            try
+            {
+                PartLoader.getPartInfoByName("femaleEVA").partPrefab.AddModule(EVA);
+            }
+            catch { }
+
         }
 
     }
