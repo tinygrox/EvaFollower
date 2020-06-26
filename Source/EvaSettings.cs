@@ -120,7 +120,7 @@ namespace MSD.EvaFollower
 
             data.AddValue("selectMouseButton", selectMouseButton);
             data.AddValue("dispatchMouseButton", dispatchMouseButton);
-            data.AddValue("selectMouseButton", selectMouseButton);
+            data.AddValue("selectKeyButton", selectKeyButton);
             data.AddValue("dispatchKeyButton", dispatchKeyButton);
 
             node.AddNode(NODENAME, data);
