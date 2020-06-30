@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace MSD.EvaFollower
 {
@@ -106,7 +105,6 @@ namespace MSD.EvaFollower
 
         public bool OnALadder { get { return eva.OnALadder; } }
 
-
         public EvaContainer(Guid flightID)
         {
             this.flightID = flightID;
@@ -191,7 +189,6 @@ namespace MSD.EvaFollower
             }
         }
 
-
         internal void Follow()
         {
             Guid flightID = (FlightGlobals.fetch.activeVessel).id;
@@ -244,12 +241,6 @@ namespace MSD.EvaFollower
 			mode = Mode.Wander;
 			wanderer.SetEva (eva);
 		}
-
-        internal void ToggleHelmet()
-        {
-            this.showHelmet = !showHelmet;
-            eva.ShowHelmet(this.showHelmet);
-        }
 
         internal void UpdateLamps()
         {
@@ -437,9 +428,5 @@ namespace MSD.EvaFollower
         {
             order.Move(position, vector3d);
         }
-
-
-
-
     }
 }
