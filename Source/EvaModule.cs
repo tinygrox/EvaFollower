@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MSD.EvaFollower
+﻿namespace MSD.EvaFollower
 {
     /// <summary>
     /// Keep track of the Context Menu.
@@ -42,7 +38,6 @@ namespace MSD.EvaFollower
             Events["EndPatrol"].active = false;
             Events["PatrolRun"].active = false;
             Events["PatrolWalk"].active = false;
-			Events["ToggleHelmet"].active = false;
 			Events["StartWanderer"].active = false;
         }
 
@@ -87,11 +82,6 @@ namespace MSD.EvaFollower
             {
                 Events["Stay"].active = true;
                 Events["Follow"].active = true;
-            }
-
-            if (currentContainer.CanTakeHelmetOff)
-            {
-                Events["ToggleHelmet"].active = true;
             }
 
             if (currentContainer.IsActive)
@@ -163,12 +153,6 @@ namespace MSD.EvaFollower
         public void PatrolRun()
         {
             currentContainer.SetRunPatrolMode();
-        }
-
-        [KSPEvent(guiActive = true, guiName = "Toggle Helmet", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
-        public void ToggleHelmet()
-        {
-            currentContainer.ToggleHelmet();
         }
 
 		[KSPEvent(guiActive = true, guiName = "Wander", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]

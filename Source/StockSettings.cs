@@ -1,12 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Collections;
+﻿using EvaFuel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using UnityEngine;
-using EvaFuel;
 
 namespace MSD.EvaFollower
 {
@@ -31,9 +28,7 @@ namespace MSD.EvaFollower
             //https://github.com/Xaiier/Kreeper/blob/master/Kreeper/Kreeper.cs#L92-L94 <- Thanks Xaiier!
             foreach (AssemblyLoader.LoadedAssembly a in AssemblyLoader.loadedAssemblies)
             {
-                string name = a.name;
-                //Log.Info(string.Format("Loading assembly: {0}", name));
-                installedMods.Add(name);
+                installedMods.Add(a.name);
             }
         }
         static public bool hasMod(string modIdent)

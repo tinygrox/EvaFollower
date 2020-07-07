@@ -10,85 +10,33 @@ namespace MSD.EvaFollower
     {
         public void Awake()
         {
+
             EvaDebug.DebugLog("Loaded AddonAddModule.");
 
-            ConfigNode EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
+            var parts = new string[]
+            {
+              "kerbalEVA",
+              "kerbalEVAVintage",
+              "kerbalEVAfemale",
+              "kerbalEVAfemaleVintage",
+              "kerbalEVA_RD_Exp",
+              "kerbalEVA_female_Exp",
+              "kerbalEVA_RD_Future",
+              "kerbalEVA_female_Future",
+              "maleEVA",
+              "femaleEVA",
+            };
 
-            try
+            foreach (var part in parts)
             {
-                PartLoader.getPartInfoByName("kerbalEVA").partPrefab.AddModule(EVA);
+                var EVA = new ConfigNode("MODULE");
+                EVA.AddValue("name", "EvaModule");
+                try
+                {
+                    PartLoader.getPartInfoByName(part).partPrefab.AddModule(EVA);
+                }
+                catch { }
             }
-            catch { }
-
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVAVintage").partPrefab.AddModule(EVA);
-            }
-            catch { }
-
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVAfemale").partPrefab.AddModule(EVA);
-            }
-            catch { }
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVAfemaleVintage").partPrefab.AddModule(EVA);
-            }
-            catch { }
-
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVA_RD_Exp").partPrefab.AddModule(EVA);
-            }
-            catch { }
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVA_female_Exp").partPrefab.AddModule(EVA);
-            }
-            catch { }
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVA_RD_Future").partPrefab.AddModule(EVA);
-            }
-            catch { }
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("kerbalEVA_female_Future").partPrefab.AddModule(EVA);
-            }
-            catch { }
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("maleEVA").partPrefab.AddModule(EVA);
-            }
-            catch { }
-            EVA = new ConfigNode("MODULE");
-            EVA.AddValue("name", "EvaModule");
-            try
-            {
-                PartLoader.getPartInfoByName("femaleEVA").partPrefab.AddModule(EVA);
-            }
-            catch { }
-
         }
-
     }
 }
