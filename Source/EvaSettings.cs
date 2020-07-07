@@ -35,44 +35,6 @@ namespace MSD.EvaFollower
 
         public static void LoadConfiguration()
         {
-#if false
-            if (File.Exists("Config.cfg"))
-            {
-                KSP.IO.TextReader tr = KSP.IO.TextReader.CreateForType<EvaSettings>("Config.cfg");
-                string[] lines = tr.ReadToEnd().Split('\n');
-
-                foreach (var line in lines)
-                {
-                    string[] parts = line.Split('=');
-
-                    try
-                    {
-                        if (parts.Length > 1)
-                        {
-                            string name = parts[0].Trim();
-                            string value = parts[1].Trim();
-
-                            switch (name)
-                            {
-                                case "ShowDebugLines": { displayDebugLinesSetting = bool.Parse(value); } break;
-                                case "ShowLoadingKerbals": { displayLoadingKerbals = bool.Parse(value); } break;
-                                case "EnableHelmetToggle": { displayToggleHelmet = bool.Parse(value); } break;
-                                case "SelectMouseButton": { selectMouseButton = int.Parse(value); } break;
-                                case "DispatchMouseButton": { dispatchMouseButton = int.Parse(value); } break;
-                                case "SelectKey": { selectKeyButton = value; } break;
-                                case "DispatchKey": { dispatchKeyButton = value; } break;
-                                case "TargetVesselBySelection": { targetVesselBySelection = bool.Parse(value); } break;
-                            }
-                        }
-                    }
-                    catch
-                    {
-                       EvaDebug.DebugWarning("[EFX] Config loading error ");
-                    }
-                }
-                displayDebugLines = displayDebugLinesSetting;
-            }
-#else
             
             if (File.Exists(ConfigFileName))
             {
@@ -93,7 +55,6 @@ namespace MSD.EvaFollower
                 }
                     
             }
-#endif
         }
 
         public static void SaveConfiguration()
@@ -102,21 +63,6 @@ namespace MSD.EvaFollower
 
             ConfigNode node = new ConfigNode();
             ConfigNode data = new ConfigNode();
-#if false
-            KSP.IO.TextWriter tr = KSP.IO.TextWriter.CreateForType<EvaSettings>("Config.cfg");
-            tr.Write("ShowDebugLines = false");
-            tr.Write("# 0 = left, 1 = right, 2 = middle mouse button.");
-            tr.Write("SelectMouseButton = 0");
-            tr.Write("DispatchMouseButton = 2");
-            tr.Write("# Lookup Unity Keybinding for different options");
-            tr.Write("# use lower case or eat exception sandwich. ");
-            tr.Write("SelectKey = o");
-            tr.Write("DispatchKey = p");
-            tr.Write("");
-            tr.Write("ShowLoadingKerbals = false");
-            tr.Write("EnableHelmetToggle = true");
-            tr.Close();
-#else
 
             data.AddValue("selectMouseButton", selectMouseButton);
             data.AddValue("dispatchMouseButton", dispatchMouseButton);
@@ -127,7 +73,6 @@ namespace MSD.EvaFollower
             
             Debug.Log("Saving to: " + ConfigFileName);
             node.Save(ConfigFileName);
-#endif
         }
 
         public static bool FileExcist(string name)

@@ -1,5 +1,10 @@
 Changelog
 
+1.1.1.8
+	Deleted disabled blocks of code
+	Thanks to github user @MarijnStevens for this
+		Removed duplicate code in EvaAddonAddModule.cs and removed ToggleHelmet option because is build in now, and a small cleanup
+
 1.1.1.7
 	Thanks to github user @lampeh for this:
 		Fixed duplicated selectMouseButton, added selectKeyButton

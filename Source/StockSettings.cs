@@ -107,27 +107,6 @@ namespace MSD.EvaFollower
                 answer = Answer.inActive;
                 return;
             }
-#if false
-            DifficultyOptionsMenu dom = (DifficultyOptionsMenu)FindObjectOfType(typeof(DifficultyOptionsMenu));
-            List<GameObject> GameObjects = new List<GameObject>(FindObjectsOfType<GameObject>());
-            foreach (var go in GameObjects)
-                if (go.name == "GameDifficulty dialog handler")
-                {
-                    //   go.SetActive(false);
-                    var o = go.GetComponents<DialogGUIToggleButton>();
-                    foreach (var o1 in o)
-                        Log.Info("o1: " + o1.label);
-                    
-                }
-            
-            if (dom)
-            {
-                Log.Info("DifficultyOptionsMenu found");
-                dom.enabled = false;
-
-
-            }
-#endif
             Draw();
         }
 
