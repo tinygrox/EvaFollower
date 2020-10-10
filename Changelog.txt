@@ -1,5 +1,8 @@
 Changelog
 
+1.1.1.9
+	Fixed kerbals leaving an external seat
+
 1.1.1.8
 	Deleted disabled blocks of code
 	Thanks to github user @MarijnStevens for this
