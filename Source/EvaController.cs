@@ -29,6 +29,8 @@ namespace MSD.EvaFollower
 
             GameEvents.onGameStateSave.Add(OnSave);
             GameEvents.onFlightReady.Add(onFlightReadyCallback);
+
+            GameEvents.onCommandSeatInteraction.Add(onCommandSeatInteraction);
         }
 
         public void OnDestroy()
@@ -46,8 +48,11 @@ namespace MSD.EvaFollower
 
             GameEvents.onGameStateSave.Remove(OnSave);
             GameEvents.onFlightReady.Remove(onFlightReadyCallback);
+
+            GameEvents.onCommandSeatInteraction.Remove(onCommandSeatInteraction);
+
         }
-           
+
         /// <summary>
         /// Load the list 
         /// </summary>
@@ -103,6 +108,12 @@ namespace MSD.EvaFollower
             Load(e.to.vessel);
         }
 
+        public void onCommandSeatInteraction(KerbalEVA k, bool b)
+        {
+            EvaDebug.DebugLog("onCommandSeatInteraction()");
+            if (!b)
+                Load(k.vessel);
+        }
         /// <summary>
         /// Runs when the EVA goes onboard a vessel.
         /// </summary>

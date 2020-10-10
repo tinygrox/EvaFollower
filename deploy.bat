@@ -8,6 +8,8 @@ rem VERSIONFILE is the name of the version file, usually the same as GAMEDATA,
 rem    but not always
 
 set H=%KSPDIR%
+set H=R:\KSP_1.10.1_dev
+
 set GAMEDIR=EvaFollower
 set GAMEDATA="GameData"
 set VERSIONFILE=%GAMEDIR%.version
