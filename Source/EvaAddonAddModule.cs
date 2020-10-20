@@ -23,6 +23,7 @@ namespace MSD.EvaFollower
               "kerbalEVA_female_Exp",
               "kerbalEVA_RD_Future",
               "kerbalEVA_female_Future",
+              "kerbalEVAfemaleFuture",
               "maleEVA",
               "femaleEVA",
             };

@@ -1,5 +1,8 @@
 Changelog
 
+1.1.1.11
+	Added missing kerbal part kerbalEVAfemaleFuture
+
 1.1.1.10
 	Fix syntax error in version file
 
