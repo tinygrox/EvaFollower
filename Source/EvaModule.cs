@@ -49,7 +49,7 @@
             if (!currentContainer.Loaded)
                 return;
 
-			if (!currentContainer.EVA.vessel.Landed) {
+			if (!currentContainer.EVA.vessel.Landed && !currentContainer.EVA.vessel.Splashed) {
 				return; 
 			}
 

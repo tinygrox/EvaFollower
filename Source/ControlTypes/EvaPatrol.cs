@@ -174,7 +174,7 @@ namespace MSD.EvaFollower
         {
             lineRenderer.positionCount = actions.Count+1;
 
-            for (int i = 0; i < actions.Count; i++)
+            for (int i = 0; i < actions.Count - 1; i++)
             {
                 lineRenderer.SetPosition(i, Util.GetWorldPos3DLoad(actions[i].position));
             }
@@ -192,7 +192,7 @@ namespace MSD.EvaFollower
 
         public EvaPatrol()
         {
-            if (EvaSettings.displayDebugLines)
+            //if (EvaSettings.displayDebugLines) // disabled since this option can be enabled during the game
             {
                 lineRenderer = new GameObject().AddComponent<LineRenderer>();
 

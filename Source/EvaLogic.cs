@@ -8,29 +8,37 @@ namespace MSD.EvaFollower
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class EvaLogic : MonoBehaviour
     {
-		//List<IDetection> detectionSystems = new List<IDetection>();
+        //List<IDetection> detectionSystems = new List<IDetection>();
 
-		public EvaLogic(){
+        public EvaLogic()
+        {
 
-			//detectionSystems.Add (new DeadSpaceDetection ());
-		}
+            //detectionSystems.Add (new DeadSpaceDetection ());
+        }
 
         public void Start()
         {
             EvaDebug.DebugWarning("EvaLogic.Start()");
-
+            GameEvents.onHideUI.Add(onHideUI);
+        }
+        bool uiHidden = false;
+        void onHideUI()
+        {
+            uiHidden = !uiHidden;
         }
         public void OnDestroy()
         {
             EvaDebug.DebugWarning("EvaLogic.OnDestroy()");
+            GameEvents.onHideUI.Remove(onHideUI);
         }
 
-		public void FixedUpdate(){
-			// Update detection systems.
-			//foreach (var detection in detectionSystems) {
-			//	detection.UpdateMap (EvaController.instance.collection);
-			//}
-		}
+        public void FixedUpdate()
+        {
+            // Update detection systems.
+            //foreach (var detection in detectionSystems) {
+            //	detection.UpdateMap (EvaController.instance.collection);
+            //}
+        }
 
         public void Update()
         {
@@ -38,19 +46,25 @@ namespace MSD.EvaFollower
                 return;
 
             // Replace this with a check to see if GUI is hidden
-            if (Input.GetKeyDown(KeyCode.F2) && HighLogic.CurrentGame.Parameters.CustomParams<EvaFollowerMiscSettings>().displayDebugLinesSetting) {
-                EvaSettings.displayDebugLines = !EvaSettings.displayDebugLines;
-                foreach (EvaContainer container in EvaController.instance.collection) {
+            if (EvaSettings.displayDebugLines == uiHidden && HighLogic.CurrentGame.Parameters.CustomParams<EvaFollowerMiscSettings>().displayDebugLinesSetting)
+            {
+
+                //EvaSettings.displayDebugLines = !EvaSettings.displayDebugLines;
+                EvaSettings.displayDebugLines = !uiHidden;
+                foreach (EvaContainer container in EvaController.instance.collection)
+                {
                     container.togglePatrolLines();
                 }
             }
 
-			if (Input.GetKeyDown (KeyCode.B)) {
-				foreach (EvaContainer container in EvaController.instance.collection) {
-					container.EVA.PackToggle ();
-				}
-			}
-				
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                foreach (EvaContainer container in EvaController.instance.collection)
+                {
+                    container.EVA.PackToggle();
+                }
+            }
+
             try
             {
                 foreach (EvaContainer eva in EvaController.instance.collection.ToArray())

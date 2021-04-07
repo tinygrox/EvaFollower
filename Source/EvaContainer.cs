@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Reflection;
 
 namespace MSD.EvaFollower
 {
@@ -49,7 +50,6 @@ namespace MSD.EvaFollower
         public bool AllowRunning
         {
             get {
-
                 if (mode == Mode.Patrol)
                 {
                     return patrol.AllowRunning;
@@ -105,10 +105,13 @@ namespace MSD.EvaFollower
 
         public bool OnALadder { get { return eva.OnALadder; } }
 
+        MethodInfo removeRBAnchor = null;
+
         public EvaContainer(Guid flightID)
         {
             this.flightID = flightID;
             this.loaded = false;
+            removeRBAnchor = typeof(KerbalEVA).GetMethod("RemoveRBAnchor", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
         public void Load(KerbalEVA eva)
@@ -375,8 +378,9 @@ namespace MSD.EvaFollower
         {
 			Rigidbody rigidbody = null;
 			eva.GetComponentCached<Rigidbody>(ref rigidbody);
-			return (!eva.isEnabled) | (!eva.isRagdoll) | (!rigidbody.isKinematic);
+            return (!eva.isEnabled) | (!eva.isRagdoll) | (!rigidbody.isKinematic);
         }
+
         /// <summary>
         /// Move the current kerbal to target.
         /// </summary>
@@ -409,13 +413,21 @@ namespace MSD.EvaFollower
 					eva.GetComponentCached<Rigidbody>(ref rigidbody);
 
                     //move
-					if(rigidbody != null){
-						rigidbody.MovePosition(rigidbody.position + move);
-					}
+					if(rigidbody != null)
+                    {
+                        RemoveRBAnchor(eva);
+                        rigidbody.MovePosition(rigidbody.position + move);
+                    }
                 }
             }
 
-            #endregion
+#endregion
+        }
+
+        void RemoveRBAnchor(KerbalEVA eva)
+        {
+            if (removeRBAnchor != null)
+                removeRBAnchor.Invoke(eva,  null); //, parametersArray);
         }
 
         internal void CheckModeIsNone()
