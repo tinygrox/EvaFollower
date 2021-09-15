@@ -1,5 +1,9 @@
 Changelog
 
+1.1.1.13
+	Added AssemblyFileVersion
+	Updated version file for 1.12
+
 1.1.1.12
 	Added ability to start follow while in water
 	Fixed issue of kerbals not moving in new KSP version 1.11.2
