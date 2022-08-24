@@ -44,7 +44,7 @@ namespace MSD.EvaFollower
             GameEvents.onCrewOnEva.Remove(OnCrewOnEva);
             GameEvents.onCrewBoardVessel.Remove(OnCrewBoardVessel);
 //            GameEvents.onCrewKilled.Remove(OnCrewKilled);
-            GameEvents.onVesselWillDestroy.Add(VesselDestroyed);
+            GameEvents.onVesselWillDestroy.Remove(VesselDestroyed);
 
             GameEvents.onGameStateSave.Remove(OnSave);
             GameEvents.onFlightReady.Remove(onFlightReadyCallback);
