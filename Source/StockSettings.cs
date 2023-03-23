@@ -238,14 +238,14 @@ namespace MSD.EvaFollower
 
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Select EVA Propellent from list below"); // 
+            GUILayout.Label("从下选择EVA推进剂"); // "Select EVA Propellent from list below"
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
-            var newallRes = GUILayout.Toggle(allRes, "All resources"); // 
+            var newallRes = GUILayout.Toggle(allRes, "所有资源"); // "All resources"
             GUILayout.EndVertical();
             GUILayout.BeginVertical();
-            var newfuelRes = GUILayout.Toggle(fuelRes, "Fuel resources"); // 
+            var newfuelRes = GUILayout.Toggle(fuelRes, "燃料"); // "Fuel resources"
             GUILayout.EndVertical();
             if (newfuelRes && allRes)
             {
@@ -268,7 +268,7 @@ namespace MSD.EvaFollower
 
             GUILayout.EndScrollView();
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("OK")) // 
+            if (GUILayout.Button("好的")) // "OK"
             {
                 answer = Answer.answered;
                 if (allRes)
@@ -296,7 +296,7 @@ namespace MSD.EvaFollower
                     }
                 }
             }
-            if (GUILayout.Button("Cancel")) // 
+            if (GUILayout.Button("取消")) // "Cancel"
                 answer = Answer.cancel;
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
