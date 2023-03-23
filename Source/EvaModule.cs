@@ -107,55 +107,55 @@
         }
 
 
-        [KSPEvent(guiActive = true, guiName = "Follow Me", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "跟着我", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Follow Me"
         public void Follow()
         {
             currentContainer.Follow();
         }
 
-        [KSPEvent(guiActive = true, guiName = "Stay Put", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "待着别动", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Stay Put"
         public void Stay()
         {
             currentContainer.Stay();
         }
 
-        [KSPEvent(guiActive = true, guiName = "Add Waypoint", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "设置导航点", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Add Waypoint"
         public void SetPoint()
         {
                 currentContainer.SetWaypoint();
         }
 
-        [KSPEvent(guiActive = true, guiName = "Wait", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "等待", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Wait"
         public void Wait()
         {
             currentContainer.Wait();
         }
 
-        [KSPEvent(guiActive = true, guiName = "Patrol", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "巡逻", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Patrol"
         public void Patrol()
         {
             currentContainer.StartPatrol();
         }
 
-        [KSPEvent(guiActive = true, guiName = "End Patrol", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "结束巡逻", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "End Patrol"
         public void EndPatrol()
         {
             currentContainer.EndPatrol();
         }
 
-        [KSPEvent(guiActive = true, guiName = "Walk", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "行走", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] //"Walk"
         public void PatrolWalk()
         {
             currentContainer.SetWalkPatrolMode();
         }
 
-        [KSPEvent(guiActive = true, guiName = "Run", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+        [KSPEvent(guiActive = true, guiName = "奔跑", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Run"
         public void PatrolRun()
         {
             currentContainer.SetRunPatrolMode();
         }
 
-		[KSPEvent(guiActive = true, guiName = "Wander", active = true, guiActiveUnfocused = true, unfocusedRange = 8)]
+		[KSPEvent(guiActive = true, guiName = "闲逛", active = true, guiActiveUnfocused = true, unfocusedRange = 8)] // "Wander"
 		public void StartWanderer()
 		{
 			currentContainer.StartWanderer();

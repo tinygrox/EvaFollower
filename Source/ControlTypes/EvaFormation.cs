@@ -45,7 +45,7 @@ namespace MSD.EvaFollower
                 }
             }
 
-            return "None";
+            return "无"; // "None"
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace MSD.EvaFollower
             {
                 leaderID = leader.flightID.ToString();
             }
-            return "(Leader:" + leaderID + ")";
+            return "(领航员:" + leaderID + ")"; // Leader
         }
 
 		public void FromSave(string formation)

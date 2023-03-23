@@ -238,14 +238,14 @@ namespace MSD.EvaFollower
 
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Select EVA Propellent from list below");
+            GUILayout.Label("Select EVA Propellent from list below"); // 
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
-            var newallRes = GUILayout.Toggle(allRes, "All resources");
+            var newallRes = GUILayout.Toggle(allRes, "All resources"); // 
             GUILayout.EndVertical();
             GUILayout.BeginVertical();
-            var newfuelRes = GUILayout.Toggle(fuelRes, "Fuel resources");
+            var newfuelRes = GUILayout.Toggle(fuelRes, "Fuel resources"); // 
             GUILayout.EndVertical();
             if (newfuelRes && allRes)
             {
@@ -268,7 +268,7 @@ namespace MSD.EvaFollower
 
             GUILayout.EndScrollView();
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("OK"))
+            if (GUILayout.Button("OK")) // 
             {
                 answer = Answer.answered;
                 if (allRes)
@@ -296,7 +296,7 @@ namespace MSD.EvaFollower
                     }
                 }
             }
-            if (GUILayout.Button("Cancel"))
+            if (GUILayout.Button("Cancel")) // 
                 answer = Answer.cancel;
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
@@ -316,21 +316,21 @@ namespace MSD.EvaFollower
         public override string Title { get { return ""; } }
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
         public override string Section { get { return "EVA Follower"; } }
-        public override string DisplaySection { get { return "EVA Follower"; } }
+        public override string DisplaySection { get { return "舱外跟随"; } } // "EVA Follower"
         public override int SectionOrder { get { return 1; } }
         public override bool HasPresets { get { return false; } }
 
 
-        [GameParameters.CustomParameterUI("Show Debug Lines?")]
+        [GameParameters.CustomParameterUI("显示Debug信息？")] // "Show Debug Lines?"
         public bool displayDebugLinesSetting = false;
 
-        [GameParameters.CustomParameterUI("Show Loading Kerbals?")]
+        [GameParameters.CustomParameterUI("显示载入中的乘员？")] // "Show Loading Kerbals?"
         public bool displayLoadingKerbals = true;
 
-        [GameParameters.CustomParameterUI("Enable Helmet Toggle?")]
+        [GameParameters.CustomParameterUI("启用头盔动作？")] // "Enable Helmet Toggle?"
         public bool displayToggleHelmet = false;
 
-        [GameParameters.CustomParameterUI("Target Vessel By Selection?")]
+        [GameParameters.CustomParameterUI("朝向指定载具？")] // "Target Vessel By Selection?"
         public bool targetVesselBySelection = true;
 
 
